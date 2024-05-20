@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 # let's fisrt give you an overview of the data
 # This is a bike share company's customer data
 # we are gonna clean it to enhance the data quality
@@ -19,7 +13,6 @@ import numpy as np
 import datetime
 
 
-# In[3]:
 
 
 # Now let's import the csv file that contains the data
@@ -27,8 +20,8 @@ df = pd.read_csv("data.csv")
 df
 
 
-# In[4]:
-
+#let's look at the info for the data and then we can move on 
+df.info()
 
 # Now that our primary objective is to clean and standardize the data for future analysis
 # Here are few things we can do in order to clean the data
@@ -42,7 +35,14 @@ df
 # Addional steps will be added as we go on
 
 
-# In[5]:
+#Now that we know what to do , let's see what the data looks like in corolation with one another 
+df.describe()
+
+
+#First let's change the float format for the data as it will be helpful for us going into the analysis 
+pd.set_option('display.float_format', lambda x:'%.2f' % x)
+#so this code will change the formatting and show 2 decimal points data. 
+df  #Seems like it worked 
 
 
 # first of all , start with the basic , let's remove some rows with duplicate vlaues
@@ -52,7 +52,7 @@ df
 # it did
 
 
-# In[6]:
+
 
 
 # So no duplicates huh, let's remove rows with blanks in them shall we.
@@ -62,7 +62,6 @@ df
 # it too works
 
 
-# In[7]:
 
 
 # let's change the name of a column
@@ -72,7 +71,7 @@ df
 # works huh
 
 
-# In[8]:
+
 
 
 # there isn't much to be desired here
@@ -80,7 +79,6 @@ df
 # soo let's move on to deleting use less columns
 
 
-# In[9]:
 
 
 # let's delete Day Month Year from the data set because it doesn't have much to desire
@@ -91,7 +89,6 @@ df
 # it worked
 
 
-# In[10]:
 
 
 # now that the useless date columns are out, now let's also delete Age_Group column as we already have Age Column and category is pretty useless
@@ -101,7 +98,6 @@ df
 # It works
 
 
-# In[11]:
 
 
 # Let's check data in a column , I wanna know if I should delete the column or not
@@ -118,7 +114,6 @@ df.drop(columns=["Sub_Category"], inplace=True)
 df
 
 
-# In[12]:
 
 
 # Why I did this is the that column was completly useless as it holds the same value, provides no explorative value
@@ -129,13 +124,10 @@ df
 # it worked
 
 
-# In[13]:
 
 
 print(df.dtypes)
 
-
-# In[14]:
 
 
 # the product_category is also not particularly useful as it serves no purpose on our analysis
@@ -145,7 +137,6 @@ df.drop(columns=("Product_Category"), inplace=True)
 df
 
 
-# In[15]:
 
 
 # Now let's change the data type in all the columns that are objects to strings so that we can perform necassary analysis and remove the $ sings in all the columns.
@@ -157,7 +148,6 @@ df
 print(df.columns)
 
 
-# In[16]:
 
 
 # Let's see if it works, now it must work as we know how the columns are named.
@@ -166,7 +156,6 @@ df.rename(columns={" Unit_Cost ": "uc"}, inplace=True)
 df
 
 
-# In[17]:
 
 
 # okay now that it worked let's change the names of other columns too
@@ -179,7 +168,6 @@ df.rename(columns={"Revenue": "revenue"}, inplace=True)
 df
 
 
-# In[18]:
 
 
 # As all of the columns about income and expenditures , they are all object data type and also they have '$' , let's first clear the '$' sign
@@ -193,7 +181,7 @@ for col in columns:
 df
 
 
-# In[19]:
+
 
 
 # All the columns holding financial data have a object data type, maybe we should convert them first to int.
@@ -212,7 +200,6 @@ for col in columns:
 print(df.dtypes)
 
 
-# In[20]:
 
 
 # Looks like it worked. Okay now that basic data cleaning is done. Let's move on to creating other columns where necassary
