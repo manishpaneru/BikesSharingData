@@ -10,6 +10,7 @@
 # Let's import required libraries and dependecies
 import pandas as pd
 import numpy as np
+import seaborn as sns
 import datetime
 
 
@@ -60,7 +61,15 @@ df.describe()
 
 
 
+#Let's see the coloration that the different columns of the dataset has with each other 
+df.corr()
 
+
+#okay maybe we wanna visualize it to understand it even better 
+sns.heatmap(df.cor(). annot=True)
+plt.rcParams['figure.figsize'] = (20,7)
+plt.show()
+#Now this visualization can give us a pretty good picture of corolation in the data between each columns
 
 
 # let's change the name of a column
