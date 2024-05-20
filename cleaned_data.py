@@ -20,8 +20,6 @@ df = pd.read_csv("data.csv")
 df
 
 
-#let's look at the info for the data and then we can move on 
-df.info()
 
 # Now that our primary objective is to clean and standardize the data for future analysis
 # Here are few things we can do in order to clean the data
@@ -35,8 +33,8 @@ df.info()
 # Addional steps will be added as we go on
 
 
-#Now that we know what to do , let's see what the data looks like in corolation with one another 
-df.describe()
+#let's have a first look at the data now 
+df.info()
 
 
 #First let's change the float format for the data as it will be helpful for us going into the analysis 
@@ -44,22 +42,23 @@ pd.set_option('display.float_format', lambda x:'%.2f' % x)
 #so this code will change the formatting and show 2 decimal points data. 
 df  #Seems like it worked 
 
+#let's see how many null values does this dataset has 
+df.isnull().sum()
 
-# first of all , start with the basic , let's remove some rows with duplicate vlaues
-df = df.drop_duplicates()
-# did it worked
-df
-# it did
+#let's also see how many data frame has unique values 
+df.nunique()
+
+#Soo there is null values in product description and oder quantity as well ass age_group columns 
+#As these columns have similiar overall data let's just use forward fill to fill the empty data 
+df.ffill(inplace=True) # this code ought to take care of it 
+df.info() #let's see 
+
+#soo from here we can see that only few columns provide any at all information as most are repeated or a single value 
+#soo let's see the corolation between the data 
+df.describe()
+#This is just some nice high level overview 
 
 
-
-
-
-# So no duplicates huh, let's remove rows with blanks in them shall we.
-df = df.dropna()
-# let's check it
-df
-# it too works
 
 
 
